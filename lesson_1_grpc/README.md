@@ -1,7 +1,11 @@
 ## lesson_1_grpc
 
 ### 编译环境准备
-需先安装 gRPC 与 protoc 编译器
+安装protobuf
+```
+brew install protobuf
+```
+安装 gRPC 与 protoc 编译器
 ```
 go get -u google.golang.org/grpc
 go get -u github.com/golang/protobuf/protoc-gen-go
