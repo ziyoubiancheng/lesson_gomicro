@@ -5,10 +5,12 @@ import (
 	"errors"
 	"log"
 
+	"./proto"
+
 	"github.com/micro/examples/booking/data"
-	"github.com/micro/examples/booking/srv/auth/proto"
 
 	"context"
+
 	"golang.org/x/net/trace"
 
 	"github.com/micro/go-micro"

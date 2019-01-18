@@ -1,17 +1,16 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"log"
 
+	"./proto"
+
 	"github.com/micro/examples/booking/data"
-	"github.com/micro/examples/booking/srv/rate/proto"
-
-	"context"
-	"golang.org/x/net/trace"
-
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/metadata"
+	"golang.org/x/net/trace"
 )
 
 type stay struct {

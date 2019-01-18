@@ -4,11 +4,13 @@ import (
 	"encoding/json"
 	"log"
 
+	"./proto"
+
 	"github.com/hailocab/go-geoindex"
 	"github.com/micro/examples/booking/data"
-	"github.com/micro/examples/booking/srv/geo/proto"
 
 	"context"
+
 	"golang.org/x/net/trace"
 
 	"github.com/micro/go-micro"
