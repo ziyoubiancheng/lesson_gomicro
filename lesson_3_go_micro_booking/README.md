@@ -11,19 +11,13 @@ go get -u github.com/hailocab/go-geoindex
 ```
 
 ### 编译proto
+在proto目录下执行
 ```
-cd proto
 protoc --micro_out=. --go_out=. auth.proto 
 protoc --micro_out=. --go_out=. geo.proto 
 protoc --micro_out=. --go_out=. profile.proto 
 protoc --micro_out=. --go_out=. rate.proto 
-protoc --micro_out=. --go_out=. hotel.proto
-
-mv hotel.*go ../api/hotel/proto/
-mv auth.*go ../srv/auth/proto/
-mv geo.*go ../srv/geo/proto/
-mv profile.*go ../srv/profile/proto/
-mv rate.*go ../srv/rate/proto/  
+protoc --proto_path=$GOPATH/src:. --micro_out=. --go_out=. hotel.proto 
 ```
 
 ### 运行
