@@ -1,4 +1,4 @@
-## lesson_2_go_micro
+# lesson_3_go_micro_booking
 
 ### 环境准备
 安装依赖consul
@@ -27,8 +27,3 @@ consul agent --dev
 go run s.go
 go run c.go
 ```
-
-
-
-
-
