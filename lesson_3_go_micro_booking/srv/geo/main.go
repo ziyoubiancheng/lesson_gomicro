@@ -1,20 +1,16 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"log"
 
+	"./data"
 	"./proto"
-
 	"github.com/hailocab/go-geoindex"
-	"github.com/micro/examples/booking/data"
-
-	"context"
-
-	"golang.org/x/net/trace"
-
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/metadata"
+	"golang.org/x/net/trace"
 )
 
 const (
@@ -90,7 +86,7 @@ func main() {
 	service.Init()
 
 	geo.RegisterGeoHandler(service.Server(), &Geo{
-		index: newGeoIndex("data/locations.json"),
+		index: newGeoIndex("locations.json"),
 	})
 
 	service.Run()

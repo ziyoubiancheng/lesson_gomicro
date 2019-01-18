@@ -5,9 +5,8 @@ import (
 	"encoding/json"
 	"log"
 
+	"./data"
 	"./proto"
-
-	"github.com/micro/examples/booking/data"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/metadata"
 	"golang.org/x/net/trace"
@@ -47,7 +46,7 @@ func (s *Rate) GetRates(ctx context.Context, req *rate.Request, rsp *rate.Result
 
 // loadRates loads rate codes from JSON file.
 func loadRateTable(path string) map[stay]*rate.RatePlan {
-	file := data.MustAsset("data/rates.json")
+	file := data.MustAsset("rates.json")
 
 	rates := []*rate.RatePlan{}
 	if err := json.Unmarshal(file, &rates); err != nil {
@@ -74,7 +73,7 @@ func main() {
 	service.Init()
 
 	rate.RegisterRateHandler(service.Server(), &Rate{
-		rateTable: loadRateTable("data/rates.json"),
+		rateTable: loadRateTable("rates.json"),
 	})
 
 	service.Run()

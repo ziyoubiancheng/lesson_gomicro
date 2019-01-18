@@ -1,19 +1,15 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"log"
 
+	"./data"
 	"./proto"
-
-	"github.com/micro/examples/booking/data"
-
-	"context"
-
-	"golang.org/x/net/trace"
-
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/metadata"
+	"golang.org/x/net/trace"
 )
 
 type Profile struct {
@@ -59,7 +55,7 @@ func main() {
 	service.Init()
 
 	profile.RegisterProfileHandler(service.Server(), &Profile{
-		hotels: loadProfiles("data/profiles.json"),
+		hotels: loadProfiles("profiles.json"),
 	})
 
 	service.Run()

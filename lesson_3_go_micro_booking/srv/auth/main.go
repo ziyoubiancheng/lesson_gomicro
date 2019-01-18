@@ -1,20 +1,16 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"log"
 
+	"./data"
 	"./proto"
-
-	"github.com/micro/examples/booking/data"
-
-	"context"
-
-	"golang.org/x/net/trace"
-
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/metadata"
+	"golang.org/x/net/trace"
 )
 
 type Auth struct {
@@ -65,7 +61,7 @@ func main() {
 	service.Init()
 
 	auth.RegisterAuthHandler(service.Server(), &Auth{
-		customers: loadCustomerData("data/customers.json"),
+		customers: loadCustomerData("customers.json"),
 	})
 
 	service.Run()
