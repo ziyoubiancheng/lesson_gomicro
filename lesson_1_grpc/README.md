@@ -1,16 +1,23 @@
 ## lesson_1_grpc
 
-### 环境准备
+### 编译环境准备
+需先安装 gRPC 与 protoc 编译器
 ```
-git clone https://github.com/google/protobuf
-cd protobuf
-./autogen.sh
-./configure
-make
-make check
-sudo make install
+go get -u google.golang.org/grpc
+go get -u github.com/golang/protobuf/protoc-gen-go
 ```
 
-###编译proto
+### 编译 user.proto 文件
+```
+cd proto
+
+protoc -I . --go_out=plugins=grpc:. ./user.proto
+```
+
+### 运行
+```
+go run s.go
+go run c.go
+```
 
 
