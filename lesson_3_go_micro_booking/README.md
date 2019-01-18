@@ -3,6 +3,7 @@
 ### 环境准备
 
 ```
+go get github.com/ziyoubiancheng/lesson_gomicro
 ￼go get github.com/micro/protobuf/{proto,protoc-gen-go}
 go get -u github.com/micro/protoc-gen-micro
 go get -u github.com/micro/go-micro

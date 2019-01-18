@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package hotel;
 
-import "github.com/ziyoubiancheng/lesson_3_go_micro_booking/proto/profile.proto";
-import "github.com/ziyoubiancheng/lesson_3_go_micro_booking/proto/rate.proto";
+import "github.com/ziyoubiancheng/lesson_3_go_micro_booking/srv/profile/proto/profile.proto";
+import "github.com/ziyoubiancheng/lesson_3_go_micro_booking/srv/provile/proto/rate.proto";
 
 service Hotel {
 	rpc Rates(Request) returns (Response) {};
