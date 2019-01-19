@@ -10,7 +10,7 @@ import (
 	"./proto"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/metadata"
-	"github.com/ziyoubiancheng/lesson_gomicro/lesson_3_go_micro_booking/ztrace"
+	"github.com/ziyoubiancheng/lesson_gomicro/lesson_4_go_micro_zipkin/ztrace"
 	"golang.org/x/net/trace"
 )
 

@@ -3,12 +3,12 @@ package ztrace
 import (
 	"log"
 
+	"github.com/micro/go-micro/metadata"
 	"github.com/micro/go-micro/server"
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/ext"
 	zipkin "github.com/openzipkin/zipkin-go-opentracing"
 	"golang.org/x/net/context"
-	"google.golang.org/grpc/metadata"
 )
 
 func InitTracer(zipkinURL string, hostPort string, serviceName string) {
@@ -24,32 +24,33 @@ func InitTracer(zipkinURL string, hostPort string, serviceName string) {
 		log.Fatalf("unable to create Zipkin tracer: %v", err)
 		return
 	}
+
 	opentracing.InitGlobalTracer(tracer)
 	return
 }
 
 func ServerWrapper(fn server.HandlerFunc) server.HandlerFunc {
 	return func(ctx context.Context, req server.Request, rsp interface{}) error {
-		operationName := req.Method()
+		operationName := "testM" //req.Method()
 
-		//extract metadata to context
-		ctx = ContextFromGRPC(ctx, opentracing.GlobalTracer(), operationName)
+		//		//extract metadata to context
+		//		ctx = ContextFromContext(ctx, opentracing.GlobalTracer(), operationName)
 
-		//get span from context metadata
-		span := opentracing.SpanFromContext(ctx)
-		if span == nil {
-			//create new root span
-			//span = opentracing.StartSpan(operationName)
-			return nil
-		}
+		//		//get span from context metadata
+		//		span := opentracing.SpanFromContext(ctx)
+		//		if span == nil {
+		//			//create new root span
+		//			//span = opentracing.StartSpan(operationName)
+		//			return nil
+		//		}
 
-		//span.SetOperationName(operationName)
-		defer span.Finish()
+		//		//span.SetOperationName(operationName)
+		//		defer span.Finish()
 
-		ext.SpanKindRPCServer.Set(span)
-		span.SetTag("test tag", "fuck")
+		//		ext.SpanKindRPCServer.Set(span)
+		//		span.SetTag("test tag", "fuck")
 
-		log.Printf("[Trace Wrapper] Before serving request method: %v\n", req.Method())
+		log.Printf("[Trace Wrapper] Before serving request method: %v\n", operationName)
 		err := fn(ctx, req, rsp)
 		log.Printf("[Trace Wrapper] After serving request. TraceId: %v\n", opentracing.GlobalTracer())
 
@@ -57,7 +58,7 @@ func ServerWrapper(fn server.HandlerFunc) server.HandlerFunc {
 	}
 }
 
-func ContextFromGRPC(ctx context.Context, tracer opentracing.Tracer, operationName string) context.Context {
+func ContextFromContext(ctx context.Context, tracer opentracing.Tracer, operationName string) context.Context {
 	md, _ := metadata.FromContext(ctx)
 
 	var span opentracing.Span
