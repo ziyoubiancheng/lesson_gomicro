@@ -36,7 +36,7 @@ micro api
 模拟验证token识别的情况
 ```
 curl -H 'Content-Type: application/json' \
-    -H "Authorization: Bearer VALID_TOKEN" \
+    -H "Authorization: Bearer INVALID_TOKEN" \
     -d '{"inDate": "2015-04-09"}' \
     http://localhost:8080/hotel/rates
 ```
